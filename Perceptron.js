@@ -4,7 +4,7 @@ class Perceptron {
         for (let i = 0; i < inputCount; i++) {
             this.weights[i] = random(-1, 1);
         }
-        this.lr = 0.1;
+        this.lr = 0.01;
     }
 
     guess(inputs) {
