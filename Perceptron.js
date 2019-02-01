@@ -4,10 +4,10 @@ class Perceptron {
         for (let i = 0; i < inputCount; i++) {
             this.weights[i] = random(-1, 1);
         }
-        this.lr = 0.01;
+        this.lr = 0.0001;
     }
 
-    guess(inputs) {
+    feedForward(inputs) {
         let sum = 0;
         for (let i = 0; i < inputs.length; i++) {
             sum += inputs[i] * this.weights[i];
@@ -15,31 +15,28 @@ class Perceptron {
         return sign(sum);
     }
 
-    train(point, label) {
-        let g = this.guess(point);
-        let error = label - g;
+    train(inputs, output) {
+        let guess = this.feedForward(inputs);
+        let error = output - guess;
         for (let i = 0; i < this.weights.length; i++) {
-            this.weights[i] += error * point[i] * this.lr;
+            this.weights[i] += error * inputs[i] * this.lr;
         }
     }
 
     show() {
-        let y1 = this.guessY(-1);
-        let y2 = this.guessY(1);
+        let x1 = -1;
+        let x2 = 1;
+        let y1 = (-(this.weights[0] * x1) - this.weights[2]) / this.weights[1];
+        let y2 = (-(this.weights[0] * x2) - this.weights[2]) / this.weights[1];
+        x1 = 0;
+        x2 = width;
         y1 = map(y1, -1, 1, height, 0);
         y2 = map(y2, -1, 1, height, 0);
         stroke(0, 0, 200);
         strokeWeight(3);
-        line(0, y1, width, y2);
-    }
-
-    guessY(x) {
-        let m = this.weights[0] / this.weights[1];
-        let b = this.weights[2] / this.weights[1];
-        return -(m * x) - b;
+        line(x1, y1, x2, y2);
     }
 }
-
 
 function sign(num) {
     if (num > 0) {

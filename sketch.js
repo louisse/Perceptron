@@ -6,26 +6,27 @@ let bSlider;
 function setup() {
     createCanvas(700, 700);
     p = new Perceptron(3);
-    mSlider = createSlider(-1, 1, 1, 0.1);
-    bSlider = createSlider(-1, 1, 0, 0.1);
+    mSlider = createSlider(-1, 1, 1, 0.01);
+    bSlider = createSlider(-1, 1, 0, 0.01);
     for (let i = 0; i < 100; i++) {
         points[i] = new Point();
     }
-    frameRate(10);
 }
 
 function draw() {
+    //update
     for (let pt of points) {
+        p.train(pt.train_data, pt.label);
         pt.update();
-        p.train([pt.x, pt.y, 1], pt.label);
     }
+    points.push(new Point());
+    //render
     background(51);
     drawLine();
     for (let pt of points) {
         pt.show();
     }
     p.show();
-    points.push(new Point());
 }
 
 function mousePressed() {
