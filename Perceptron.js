@@ -14,7 +14,7 @@ class Perceptron {
             sum += inputs[i] * this.weights[i];
         }
         sum += this.bias;
-        return sign(sum);
+        return Perceptron.activateSign(sum);
     }
 
     train(inputs, output) {
@@ -39,11 +39,15 @@ class Perceptron {
         strokeWeight(3);
         line(x1, y1, x2, y2);
     }
-}
 
-function sign(num) {
-    if (num > 0) {
-        return 1;
+    static activateSign(num) {
+        if (num > 0) {
+            return 1;
+        }
+        return -1;
     }
-    return -1;
+
+    static activateSigmoid(num){
+        return num;
+    }
 }
