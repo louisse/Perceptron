@@ -5,7 +5,7 @@ let bSlider;
 
 function setup() {
     createCanvas(700, 700);
-    p = new Perceptron(2);
+    p = new PerceptronWidget(2);
     mSlider = createSlider(-1, 1, 1, 0.01);
     bSlider = createSlider(-1, 1, 0, 0.01);
     for (let i = 0; i < 100; i++) {
