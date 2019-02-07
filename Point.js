@@ -8,15 +8,12 @@ class Point {
     }
 
     show() {
-        let px = map(this.x, -1, 1, 0, width);
-        let py = map(this.y, -1, 1, height, 0);
+        const px = map(this.x, -1, 1, 0, width);
+        const py = map(this.y, -1, 1, height, 0);
         stroke(this.color);
         strokeWeight(12);
         point(px, py);
-        let clr = 0;
-        if (p.feedForward(this.train_data) === 1) {
-            clr = 255;
-        }
+        const clr = p.feedForward(this.train_data) === 1 ? 255 : 0;
         stroke(clr);
         strokeWeight(9);
         point(px, py);

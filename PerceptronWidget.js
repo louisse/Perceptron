@@ -1,4 +1,3 @@
-
 class PerceptronWidget extends Perceptron {
     constructor(inputCount) {
         super(inputCount);
@@ -9,21 +8,21 @@ class PerceptronWidget extends Perceptron {
     }
 
     feedForward(inputs) {
-        let activate = super.feedForward(inputs);
+        const activate = super.feedForward(inputs);
         this.isActivated = activate === 1;
         return activate;
     }
 
-    showDendrites(){
+    showDendrites() {
         push();
         translate(0, -this.size / 2);
-        let dendrites = this.weights.concat(this.bias);
-        let spacing = this.size / (dendrites.length - 1);
+        const dendrites = this.weights.concat(this.bias);
+        const spacing = this.size / (dendrites.length - 1);
+        const maxWeight = max(dendrites.map(abs));
         let pointer = 0;
-        let maxWeight = max(dendrites.map(abs));
-        for (let dendrite of dendrites) {
-            let dendriteClr = dendrite > 0 ? color(50, 255, 50) : color(255, 50, 50);
-            let sWeight = map(abs(dendrite), 0, maxWeight, 1, 4);
+        for (const dendrite of dendrites) {
+            const dendriteClr = dendrite > 0 ? color(50, 255, 50) : color(255, 50, 50);
+            const sWeight = map(abs(dendrite), 0, maxWeight, 1, 4);
             stroke(dendriteClr);
             strokeWeight(sWeight);
             line(0, pointer, -this.size, pointer);
@@ -32,10 +31,10 @@ class PerceptronWidget extends Perceptron {
         pop();
     }
 
-    showSynapse(){
+    showSynapse() {
         push();
         translate(this.size / 2, 0);
-        let synapseClr = this.isActivated === true ? color(50, 255, 50) : color(255, 50, 50);
+        const synapseClr = this.isActivated === true ? color(50, 255, 50) : color(255, 50, 50);
         stroke(synapseClr);
         strokeWeight(5);
         line(0, 0, this.size / 2, 0);

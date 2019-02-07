@@ -47,7 +47,7 @@ class Perceptron {
         return -1;
     }
 
-    static activateSigmoid(num){
+    static activateSigmoid(num) {
         return num;
     }
 }

@@ -1,5 +1,5 @@
+const points = [];
 let p;
-let points = [];
 let mSlider;
 let bSlider;
 
@@ -15,7 +15,7 @@ function setup() {
 
 function draw() {
     //update
-    for (let pt of points) {
+    for (const pt of points) {
         p.train(pt.train_data, pt.label);
         pt.update();
     }
@@ -23,7 +23,7 @@ function draw() {
     //render
     background(30);
     drawLine();
-    for (let pt of points) {
+    for (const pt of points) {
         pt.show();
     }
     p.show();
@@ -34,8 +34,8 @@ function mousePressed() {
         points.push(new Point());
         return;
     }
-    let mx = map(mouseX, 0, width, -1, 1);
-    let my = map(mouseY, 0, height, 1, -1);
+    const mx = map(mouseX, 0, width, -1, 1);
+    const my = map(mouseY, 0, height, 1, -1);
     points.push(new Point(mx, my));
 }
 
